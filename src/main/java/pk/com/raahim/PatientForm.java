@@ -356,6 +356,7 @@ public class PatientForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public int getPatientId() {
+        if (this.jTextField1.getText() == "") return -1;
         return Integer.parseInt(this.jTextField1.getText());
     }
     
