@@ -224,6 +224,29 @@ public class DatabaseController {
 
     public Patient lastPatient()
     {
-        return Patient.Patient404();
+        Connection connection = connect();
+        if (connection == null) return Patient.Patient404();
+
+        String query = "SELECT * FROM "+tableName+" ORDER BY id DESC LIMIT 1;";
+
+        try {
+            PreparedStatement stmt = connection.prepareStatement(
+                    query,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+
+            offset = 0;
+
+            ResultSet rs = stmt.executeQuery();
+            rs.last();
+            if (rs.getRow() < 1) {
+                return Patient.Patient404();
+            }
+
+            return new Patient(rs.getInt("id"), rs.getString("name"));
+        } catch (SQLException e) {
+            System.out.println("Could not retrieve users! Error: " + e.getMessage());
+            return new Patient(0, "Could not get patients");
+        }
     }
 }
