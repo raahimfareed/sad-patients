@@ -12,12 +12,12 @@ import java.util.*;
  */
 public class PatientController {
     //private PatientRegister mData;
-    private DatabaseController mData;
+    private DatabaseHandler mData;
     private int mCurrentIndex;
 
     public PatientController() {
 //        mData = new PatientRegister(new ArrayList(), 0);
-        mData = new DatabaseController("sad_patients", "localhost", 5432, "yeet", "OmegaHaxR3");
+        mData = new DatabaseHandler("sad_patients", "localhost", 5432, "yeet", "OmegaHaxR3");
         mCurrentIndex = 0;
     }
 

@@ -15,7 +15,7 @@ import java.sql.PreparedStatement;
  *
  * @author yeet
  */
-public class DatabaseController {
+public class DatabaseHandler {
     private String username = null;
     private String password = null;
     private String host = null;
@@ -26,7 +26,7 @@ public class DatabaseController {
 
     private int offset = 0;
 
-    public DatabaseController(String name, String host, int port, String username, String password) {
+    public DatabaseHandler(String name, String host, int port, String username, String password) {
         this.username = username;
         this.password = password;
         this.host = host;
